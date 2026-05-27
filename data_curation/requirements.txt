@@ -1,0 +1,12 @@
+torch==2.4.0
+torchvision
+openai>=1.0
+supervision
+transformers
+pillow
+pandas
+numpy
+opencv-python
+decord
+pycocotools
+tqdm
