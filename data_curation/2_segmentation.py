@@ -18,15 +18,12 @@ import supervision as sv
 from PIL import Image
 from sam2.build_sam import build_sam2
 from sam2.sam2_image_predictor import SAM2ImagePredictor
-from transformers import AutoProcessor, AutoModelForCausalLM
 from utils.supervision_utils import CUSTOM_COLOR_MAP
 import json
 import pycocotools.mask as mask_util
 from pathlib import Path
 from torchvision.ops import box_convert
 from grounding_dino.groundingdino.util.inference import load_model, load_image, predict
-import pandas as pd
-import decord
 import tqdm
 import time
 import grounding_dino.groundingdino.datasets.transforms as T

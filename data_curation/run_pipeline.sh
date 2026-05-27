@@ -61,8 +61,9 @@ torchrun --nproc_per_node="${NUM_GPUS}" "${SCRIPT_DIR}/1_preprocessing.py" \
     --model_name "${MODEL_NAME}"
 
 # --- Step 2: Segmentation (SAM2) ---
-# Note: Step 2 requires a JSON metadata file mapping image paths to captions.
-# Skip if not applicable to your workflow (preprocessing already includes SAM2).
+# Note: Step 1 already includes SAM2 segmentation inline, so Step 2 is
+# only needed if you want to run segmentation separately on new data.
+# Uncomment below if needed:
 # echo ""
 # echo "[Step 2/5] Segmentation..."
 # torchrun --nproc_per_node="${NUM_GPUS}" "${SCRIPT_DIR}/2_segmentation.py" \

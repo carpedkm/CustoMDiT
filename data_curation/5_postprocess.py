@@ -107,51 +107,87 @@ def gather_filtering(input_dir, metadata_csv, output_dir):
 
 
 def gather_recaptioning(input_dir, output_dir):
-    """Merge recaptioning statistics and gather recap CSVs.
+    """Build training CSV from per-video recaptioning JSONs.
+
+    Step 4 saves per-video JSONs with annotations[i]['caption'] containing
+    the recaptioned text. This function reads all those JSONs and builds
+    a CSV with columns: videoid, object_index, personalized_caption, root_dir.
+    This CSV format matches what the training dataloader expects.
 
     Args:
-        input_dir: Pipeline output root (expects input_dir/recaptioning/statistics/ and recap_csv/)
+        input_dir: Pipeline output root (expects input_dir/recaptioning/ with per-video JSONs)
         output_dir: Where to save merged outputs
 
     Returns:
-        Path to merged recap metadata CSV, or None if no CSVs found
+        Path to merged recap metadata CSV, or None if no JSONs found
     """
     print("=== Gather Recaptioning ===")
     recap_dir = os.path.join(input_dir, 'recaptioning')
-    stats_dir = os.path.join(recap_dir, 'statistics')
-    csv_dir = os.path.join(recap_dir, 'recap_csv')
     os.makedirs(output_dir, exist_ok=True)
 
-    # Gather statistics if available
-    if os.path.isdir(stats_dir):
-        # Merge num_annotation JSON files
-        num_ann_files = glob.glob(os.path.join(recap_dir, 'num_annotation', '*.json'))
-        if num_ann_files:
-            merged_num_ann = {}
-            for fp in num_ann_files:
-                with open(fp, 'r') as f:
-                    merged_num_ann.update(json.load(f))
-            with open(os.path.join(output_dir, 'num_annotations_merged.json'), 'w') as f:
-                json.dump(merged_num_ann, f, indent=4)
-            print(f"Merged {len(num_ann_files)} num_annotation files -> {len(merged_num_ann)} entries")
+    # Merge num_annotation JSON files if available
+    num_ann_files = glob.glob(os.path.join(recap_dir, 'num_annotation', '*.json'))
+    if num_ann_files:
+        merged_num_ann = {}
+        for fp in num_ann_files:
+            with open(fp, 'r') as f:
+                merged_num_ann.update(json.load(f))
+        with open(os.path.join(output_dir, 'num_annotations_merged.json'), 'w') as f:
+            json.dump(merged_num_ann, f, indent=4)
+        print(f"Merged {len(num_ann_files)} num_annotation files -> {len(merged_num_ann)} entries")
 
     # Gather error files
     error_dir = os.path.join(recap_dir, 'error')
     error_videoids = gather_error_videoids(error_dir)
     print(f"Recaptioning errors: {len(error_videoids)} video IDs")
 
-    # Merge recap CSVs if available
-    if os.path.isdir(csv_dir):
-        csv_files = glob.glob(os.path.join(csv_dir, '*.csv'))
-        if csv_files:
-            dfs = [pd.read_csv(f) for f in csv_files]
-            merged_df = pd.concat(dfs).drop_duplicates()
-            output_path = os.path.join(output_dir, 'recap_merged.csv')
-            merged_df.to_csv(output_path, index=False)
-            print(f"Merged {len(csv_files)} recap CSVs -> {len(merged_df)} rows")
-            return output_path
+    # Scan per-video JSONs and build training CSV
+    # Step 4 saves JSONs as: recap_dir/{videoid_dir}/{videoid_basename}/{videoid_basename}.json
+    json_files = glob.glob(os.path.join(recap_dir, '**', '*.json'), recursive=True)
+    # Exclude num_annotation/ and other metadata JSONs
+    json_files = [f for f in json_files
+                  if '/num_annotation/' not in f and '/error/' not in f]
 
-    return None
+    if not json_files:
+        print("No recaptioning JSONs found")
+        return None
+
+    rows = []
+    for json_path in json_files:
+        try:
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+            # Extract videoid from the JSON's video_path field
+            videoid = data.get('video_path', '')
+            if not videoid:
+                continue
+            # Remove .mp4 extension if present for consistency
+            if videoid.endswith('.mp4'):
+                videoid = videoid[:-4]
+            annotations = data.get('annotations', [])
+            for obj_idx, ann in enumerate(annotations):
+                caption = ann.get('caption', '')
+                if not caption or caption == 'None':
+                    continue
+                rows.append({
+                    'videoid': videoid,
+                    'object_index': obj_idx,
+                    'personalized_caption': caption,
+                    'root_dir': os.path.dirname(json_path).rsplit(videoid.split('/')[-1], 1)[0].rstrip('/'),
+                })
+        except Exception as e:
+            print(f"Error reading {json_path}: {e}")
+            continue
+
+    if not rows:
+        print("No valid recaptioning entries found")
+        return None
+
+    merged_df = pd.DataFrame(rows)
+    output_path = os.path.join(output_dir, 'recap_merged.csv')
+    merged_df.to_csv(output_path, index=False)
+    print(f"Built recap CSV from {len(json_files)} JSONs -> {len(merged_df)} rows")
+    return output_path
 
 
 def merge_and_split(input_csvs, output_dir, val_size=1000, root_dir=None):

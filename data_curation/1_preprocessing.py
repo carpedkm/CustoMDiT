@@ -28,7 +28,7 @@ import json
 import pycocotools.mask as mask_util
 from pathlib import Path
 from torchvision.ops import box_convert
-from grounding_dino.groundingdino.util.inference import load_model, load_image, predict
+from grounding_dino.groundingdino.util.inference import load_model, predict
 import pandas as pd
 import decord
 import tqdm
