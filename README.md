@@ -20,6 +20,8 @@ We use three separate conda environments for different components.
 conda create -n customdit python=3.10 -y
 conda activate customdit
 pip install -r customdit/requirements.txt
+# Add repo root to PYTHONPATH (required for customdit imports)
+export PYTHONPATH=$PWD:$PYTHONPATH
 ```
 
 ### Data Curation Pipeline (`data_curation`)

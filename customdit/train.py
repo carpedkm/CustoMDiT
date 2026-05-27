@@ -461,6 +461,7 @@ def main(args):
         torch_dtype=load_dtype,
         revision=args.pretrained_model.revision,
         variant=args.pretrained_model.variant,
+        low_cpu_mem_usage=False,
     )
 
     scheduler = CogVideoXDPMScheduler.from_pretrained(args.pretrained_model.name_or_path, subfolder="scheduler")
