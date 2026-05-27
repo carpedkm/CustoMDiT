@@ -62,7 +62,7 @@ def generate_video(
             model_path,
             subfolder="transformer",
             torch_dtype=dtype,
-            low_cpu_mem_usage=False,
+            low_cpu_mem_usage=True,
         )
         adapter_name = "default"
         transformer.add_adapter(adapter_name=adapter_name, adapter_config=lora_config)
