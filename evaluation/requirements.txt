@@ -1,0 +1,11 @@
+torch==2.4.0
+torchvision
+opencv-python
+pillow
+numpy
+pandas
+tqdm
+decord
+pycocotools
+transformers
+# pip install git+https://github.com/Vchitect/VBench.git
