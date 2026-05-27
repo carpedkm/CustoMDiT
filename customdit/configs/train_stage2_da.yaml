@@ -1,0 +1,78 @@
+batch_size: &Batch_Size 1
+
+pretrained_model:
+  name_or_path: THUDM/CogVideoX-5b
+  text_model_path: THUDM/CogVideoX-5b
+  revision:
+  variant:
+
+data_config:
+  size: [480, 720] # [h, w]
+  batch_size: *Batch_Size
+  num_workers: 4
+  data_dir: ./data/videos
+  metadata_dir: ./data/videos
+  metadata_path: ./data/metadata/train.csv
+  cond_image_dir: ./data/reference_images
+  cond_json_dir: ./data/annotations
+  split: pexels400k-train
+  num_frames: 49
+  fps: 8
+  data_augmentation: true
+  use_recaption: true
+
+validation:
+  prompt: null
+  prompt_separator: ":::"
+  num_validation_videos: 1
+  guidance_scale: 6.0
+  use_dynamic_cfg: false
+
+training:
+  seed: 1234
+  mixed_precision: bf16  # options: ["no", "fp16", "bf16"]
+  output_dir: ./output/stage2
+  height: 480
+  width: 720
+  fps: 8
+  max_num_frames: 49
+  train_batch_size: *Batch_Size
+  num_train_epochs: 1
+  max_train_steps: 10000
+  checkpointing_steps: 200
+  checkpoints_total_limit: 1000
+  resume_from_checkpoint: latest
+  resume_path: null  # Update to your Stage 1 checkpoint path
+  gradient_accumulation_steps: 2  # effective global batch = 1 × num_gpus × 2
+  gradient_checkpointing: true
+  learning_rate: 1e-4
+  scale_lr: false
+  lr_scheduler: cosine_with_restarts
+  lr_warmup_steps: 200
+  lr_num_cycles: 1
+  lr_power: 1.0
+  enable_slicing: true
+  enable_tiling: true
+  allow_tf32: false
+  enable_text_cfg: true
+  text_cfg_drop_rate: 0.1
+
+optimizer:
+  type: AdamW
+  use_8bit_adam: false
+  adam_beta1: 0.9
+  adam_beta2: 0.95
+  adam_weight_decay: 1e-4
+  adam_epsilon: 1e-8
+  max_grad_norm: 1.0
+
+lora_config:
+  r: 128
+  lora_alpha: 128
+  init_lora_weights: "gaussian"
+  target_modules: "(.*patch_embed\\.text_proj|.*transformer_blocks\\.[0-9]+\\.norm1\\.linear|.*transformer_blocks\\.[0-9]+\\.norm2\\.linear|.*transformer_blocks\\.[0-9]+\\.attn1\\.to_q|.*transformer_blocks\\.[0-9]+\\.attn1\\.to_k|.*transformer_blocks\\.[0-9]+\\.attn1\\.to_v|.*transformer_blocks\\.[0-9]+\\.attn1\\.to_out\\.0|.*transformer_blocks\\.[0-9]+\\.ff\\.net\\.2)"
+
+logging:
+  tracker_name: customdit
+  logging_dir: logs
+  report_to: tensorboard
