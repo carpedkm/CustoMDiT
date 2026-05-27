@@ -269,13 +269,24 @@ if __name__ == '__main__':
     # Step 2: Gather filtering
     post_filter_csv = gather_filtering(input_dir, post_pre_csv, output_dir)
 
-    # Step 3: Gather recaptioning
+    # Step 3: Gather recaptioning (builds the training CSV from per-video JSONs)
     recap_csv = gather_recaptioning(input_dir, output_dir)
 
     # Step 4: Merge and split
-    csvs_to_merge = [post_filter_csv]
+    # The recap CSV is the primary training data (videoid, object_index, personalized_caption, root_dir).
+    # The post-filter CSV is used to remove errored videos from the recap set.
     if recap_csv:
-        csvs_to_merge.append(recap_csv)
+        recap_df = pd.read_csv(recap_csv)
+        filter_df = pd.read_csv(post_filter_csv)
+        valid_videoids = set(filter_df['videoid'].astype(str))
+        recap_df = recap_df[recap_df['videoid'].astype(str).isin(valid_videoids)]
+        # Write back filtered recap
+        recap_df.to_csv(recap_csv, index=False)
+        print(f"After filtering recap by valid videoids: {len(recap_df)} rows")
+        csvs_to_merge = [recap_csv]
+    else:
+        print("Warning: No recaptioning data found, using post-filter metadata only")
+        csvs_to_merge = [post_filter_csv]
 
     merge_and_split(
         csvs_to_merge,

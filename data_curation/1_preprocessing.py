@@ -43,7 +43,13 @@ from datetime import timedelta
 import openai
 
 
-client = get_openai_client()
+client = None
+
+def _get_client():
+    global client
+    if client is None:
+        client = get_openai_client()
+    return client
 
 
 def parse_args():
@@ -194,7 +200,7 @@ def process_single_text(original_caption, florence_caption, model_name="gpt4o"):
     max_delay = 120
     while retry < max_retries:
         try:
-            response = client.chat.completions.create(
+            response = _get_client().chat.completions.create(
                 model=model_name,
                 messages=messages,
                 temperature=0.2,

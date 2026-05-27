@@ -31,7 +31,13 @@ from collections import Counter, defaultdict
 from utils.openai_client import get_openai_client
 import openai
 
-client = get_openai_client()
+client = None
+
+def _get_client():
+    global client
+    if client is None:
+        client = get_openai_client()
+    return client
 
 
 def parse_args():
@@ -205,7 +211,7 @@ def process_batch_class(class_name, image_path, original_caption, model_name="gp
     max_delay = 120
     while retry < max_retries:
         try:
-            response = client.chat.completions.create(
+            response = _get_client().chat.completions.create(
                 model=model_name,
                 messages=messages,
                 temperature=0.2,
@@ -300,7 +306,7 @@ def process_single_text(class_name, image_path, original_caption, bbox, model_na
     max_delay = 120
     while retry < max_retries:
         try:
-            response = client.chat.completions.create(
+            response = _get_client().chat.completions.create(
                 model=model_name,
                 messages=messages,
                 temperature=0.2,
