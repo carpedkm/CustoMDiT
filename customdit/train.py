@@ -741,6 +741,7 @@ def main(args):
     # Potentially load in the weights and states from a previous save
     if not args.training.resume_from_checkpoint:
         initial_global_step = 0
+        skipped_dataloader = train_dataloader
     else:
         if args.training.resume_from_checkpoint != "latest":
             path = os.path.basename(args.training.resume_from_checkpoint)
