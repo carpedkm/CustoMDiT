@@ -8,4 +8,8 @@ tqdm
 decord
 pycocotools
 transformers
-# pip install git+https://github.com/Vchitect/VBench.git
+supervision
+
+# For segment_videos.py, install from source:
+# pip install git+https://github.com/facebookresearch/segment-anything-2.git
+# See README for GroundingDINO setup
