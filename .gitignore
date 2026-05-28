@@ -8,6 +8,8 @@ build/
 *.safetensors
 *.mp4
 *.avi
+# Allow project page videos
+!docs/static/videos/*.mp4
 wandb/
 logs/
 output*/
