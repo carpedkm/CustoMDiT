@@ -6,11 +6,9 @@
 
 **ICASSP 2026**
 
-[Jingxu Zhang]()\*<sup>1,2</sup>, [Yuqian Hong]()\*<sup>1</sup>, [Daneul Kim]()<sup>3</sup>, [Kai Qiu]()<sup>2</sup>, [Qi Dai]()<sup>2</sup>, [Jianmin Bao]()<sup>2</sup>, [Yifan Yang]()<sup>2</sup>, [Xiaoyan Sun]()<sup>1</sup>, [Chong Luo]()<sup>2</sup>
+[Jingxu Zhang]()<sup>1,2</sup>, [Yuqian Hong]()<sup>1</sup>, [Daneul Kim]()<sup>3</sup>, [Kai Qiu]()<sup>2</sup>, [Qi Dai]()<sup>2</sup>, [Jianmin Bao]()<sup>2</sup>, [Yifan Yang]()<sup>2</sup>, [Xiaoyan Sun]()<sup>1</sup>, [Chong Luo]()<sup>2</sup>
 
 <sup>1</sup>University of Science and Technology of China &nbsp; <sup>2</sup>Microsoft Research Asia &nbsp; <sup>3</sup>Seoul National University
-
-<sup>*</sup>Equal contribution
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/xxxx.xxxxx)
 [![Project Page](https://img.shields.io/badge/🌐-Project%20Page-blue)](https://carpedkm.github.io/CustoMDiT)
