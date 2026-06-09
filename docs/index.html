@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PexelsCustom-1M: A Comprehensive Ecosystem for Open-Domain Customized Video Generation</title>
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/style.css?v=16">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Hero -->
+<!-- ═══ Hero ═══ -->
 <div class="hero">
   <div class="container">
     <h1>A Comprehensive Ecosystem for<br>Open-Domain Customized Video Generation</h1>
@@ -31,88 +31,120 @@
       <sup>3</sup>Seoul National University
     </div>
     <div class="links">
-      <a href="#">Paper</a>
-      <a href="#">Code</a>
-      <a href="#">Dataset</a>
-      <a href="#">Model</a>
+      <a href="#">📄 Paper</a>
+      <a href="#">💻 Code</a>
+      <a href="#">📦 Dataset</a>
+      <a href="#">📊 Benchmark</a>
     </div>
   </div>
 </div>
 
 <div class="container">
 
-<!-- Abstract -->
-<section id="abstract">
-  <h2>Abstract</h2>
-  <p>
-    Recent progress in video generation has shown impressive visual synthesis capabilities.
-    However, open-domain customized video generation remains limited by the lack of large-scale, annotated datasets capturing diverse identity-specific attributes.
-    To address this, we introduce <strong>PexelsCustom-1M</strong>, the first publicly available million-scale dataset for identity-preserving video generation, containing one million curated &langle;identity, text, video&rangle; triplets across <strong>8,000+ categories</strong>.
-  </p>
-  <p>
-    Leveraging this, we propose <strong>CustomDiT</strong>, a parameter-efficient framework that adapts a pretrained multimodal Diffusion Transformer into a customized video generator with only 8% additional learnable parameters.
-    Our method surpasses prior state-of-the-art on both existing and our new benchmarks.
-  </p>
-  <p>
-    To overcome the limited coverage of existing benchmarks (e.g., DreamBooth covers only 100 classes), we construct <strong>OpenCustom</strong>, a comprehensive evaluation benchmark with 1,000+ categories, created via cross-dataset knowledge fusion from ImageNet and MS-COCO.
-    We open-source the entire ecosystem&mdash;including dataset, pipeline, benchmark, and implementations&mdash;to support further research.
-  </p>
-</section>
-
-<!-- Demo Results -->
-<section id="demos">
-  <h2>Generation Results</h2>
-  <p>Given a single reference image, CustomDiT generates identity-preserving videos following the text prompt in a zero-shot manner.</p>
-  <div class="demo-grid">
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_cat.jpg" alt="Reference: cat">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_cat.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"a red cat"</div>
-    </div>
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_samoyed.jpg" alt="Reference: samoyed">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_samoyed.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"A Samoyed walks through a snowy forest"</div>
-    </div>
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_elephant.jpg" alt="Reference: elephant">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_elephant.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"An elephant walks through a dense jungle"</div>
-    </div>
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_dog.jpg" alt="Reference: dog">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_dog.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"a dog on a purple rug in a forest"</div>
-    </div>
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_orange.jpg" alt="Reference: orange">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_orange.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"An orange rolls across a wooden kitchen counter"</div>
-    </div>
-    <div class="demo-item">
-      <img class="ref-img" src="static/images/ref_teapot.jpg" alt="Reference: teapot">
-      <video autoplay loop muted playsinline>
-        <source src="static/videos/customdit_teapot.mp4" type="video/mp4">
-      </video>
-      <div class="demo-caption">"a teapot on top of a white rug"</div>
-    </div>
+<!-- ═══ Teaser ═══ -->
+<section id="teaser">
+  <div class="figure">
+    <img src="static/images/teaser.png" alt="CustomDiT identity-preserving video generation examples">
+    <div class="caption">Given a single reference image of any subject (leftmost column), CustomDiT generates temporally coherent video frames that faithfully preserve the subject's identity while following diverse text prompts.</div>
   </div>
 </section>
 
-<!-- PexelsCustom-1M Dataset -->
+<hr class="section-divider">
+
+<!-- ═══ Abstract ═══ -->
+<section id="abstract">
+  <h2><span class="section-icon">&#9670;</span>Abstract</h2>
+  <div class="abstract-text">
+    <p>
+      Recent progress in video generation has shown impressive visual synthesis capabilities.
+      However, open-domain customized video generation remains limited by the lack of large-scale, annotated datasets capturing diverse identity-specific attributes.
+      To address this, we introduce <strong>PexelsCustom-1M</strong>, the first publicly available million-scale dataset for identity-preserving video generation, containing one million curated &langle;identity, text, video&rangle; triplets across <strong>8,000+ categories</strong>.
+    </p>
+    <p>
+      Leveraging this, we propose <strong>CustomDiT</strong>, a parameter-efficient framework that adapts a pretrained multimodal Diffusion Transformer into a customized video generator with only <strong>8%</strong> additional learnable parameters.
+      Our method surpasses prior state-of-the-art on both existing and our new benchmarks.
+    </p>
+    <p>
+      To overcome the limited coverage of existing benchmarks (e.g., DreamBooth covers only 100 classes), we construct <strong>OpenCustom</strong>, a comprehensive evaluation benchmark with 1,000+ categories, created via cross-dataset knowledge fusion from ImageNet and MS-COCO.
+      We open-source the entire ecosystem&mdash;including dataset, pipeline, benchmark, and implementations&mdash;to support further research.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ Demo Results ═══ -->
+<section id="demos">
+  <h2><span class="section-icon">&#9670;</span>Generation Results</h2>
+  <p>Given a single reference image, CustomDiT generates identity-preserving videos following the text prompt in a <strong>zero-shot</strong> manner.</p>
+  <div class="demo-grid">
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/n02111889_7704.JPEG" alt="Reference: Samoyed">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/n02111889_7704.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"A Samoyed walks through a snowy forest, blending with the snow-covered ground"</div></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/cat_04.jpg" alt="Reference: cat">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/cat_04.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"a red cat"</div></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/000000002178.jpg" alt="Reference: sheep 2">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/000000002178.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"A sheep grazes in a lush meadow as the camera pans across the rolling hills"</div></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/n02825657_4596.JPEG" alt="Reference: bell cote">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/n02825657_4596.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"A bell cote atop a village church, surrounded by green fields and wildflowers"</div></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/n04486054_4455.JPEG" alt="Reference: triumphal arch">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/n04486054_4455.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"A triumphal arch stands in a bustling city square as the camera circles around"</div></div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-media">
+        <img class="ref-img" src="static/images/000000405053.jpg" alt="Reference: donut">
+        <span class="demo-label">Reference</span>
+      </div>
+      <video autoplay loop muted playsinline><source src="static/videos/000000405053.mp4" type="video/mp4"></video>
+      <div class="demo-info"><div class="demo-caption">"A donut sits on a kitchen counter as the camera slowly pans around"</div></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══ PexelsCustom-1M Dataset ═══ -->
 <section id="dataset">
-  <h2>PexelsCustom-1M Dataset</h2>
-  <div class="stats">
+  <h2><span class="section-icon">&#9670;</span>PexelsCustom-1M Dataset</h2>
+  <p>
+    The first million-scale, publicly available dataset for open-domain identity-preserving video generation.
+    Each sample is an &langle;identity, text, video&rangle; triplet with subject-centric captions and precise segmentation masks.
+  </p>
+
+  <div class="stats-bar">
     <div class="stat-item">
       <div class="stat-num">1M</div>
       <div class="stat-label">Annotated Triplets</div>
@@ -126,170 +158,166 @@
       <div class="stat-label">Source Videos</div>
     </div>
   </div>
-  <p>
-    PexelsCustom-1M is the first million-scale, publicly available dataset for open-domain identity-preserving video generation. Each sample is an &langle;identity, text, video&rangle; triplet with subject-centric captions and precise segmentation masks.
-  </p>
+
   <div class="figure">
     <img src="static/images/pipeline.png" alt="Data curation pipeline">
-    <div class="caption">Figure 1: Data curation pipeline of PexelsCustom-1M. The pipeline enriches data during pre-processing (Florence-2, GroundingDINO, SAM2) while filtering and generating subject-centric captions via GPT-4o during post-processing.</div>
+    <div class="caption">Data curation pipeline of PexelsCustom-1M. The pipeline enriches data during pre-processing (Florence-2, GroundingDINO, SAM2) while filtering and generating subject-centric captions via GPT-4o during post-processing.</div>
   </div>
 </section>
 
-<!-- Method -->
+<hr class="section-divider">
+
+<!-- ═══ Method ═══ -->
 <section id="method">
-  <h2>CustomDiT</h2>
+  <h2><span class="section-icon">&#9670;</span>CustomDiT</h2>
   <p>
-    CustomDiT conditions text-to-video generation on identity-aware reference images via bias-injected RoPE embeddings, while LoRA layers enable efficient adaptation with only 8% additional learnable parameters.
-    Training follows a two-stage curriculum: Stage 1 without data augmentation (WoDA) to learn identity preservation, and Stage 2 with data augmentation (WtDA) to improve generalization.
+    CustomDiT conditions text-to-video generation on identity-aware reference images via <strong>bias-injected RoPE embeddings</strong>, while LoRA layers enable efficient adaptation with only 8% additional learnable parameters.
+    Training follows a two-stage curriculum: <em>Stage 1</em> without data augmentation (WoDA) for identity preservation, and <em>Stage 2</em> with data augmentation (WtDA) for generalization.
   </p>
   <div class="figure">
     <img src="static/images/architecture.png" alt="CustomDiT architecture">
-    <div class="caption">Figure 2: Overview of CustomDiT. Training pipeline (above) shows how reference image latents are injected via concatenation with shifted positional embeddings. Inference (below) demonstrates zero-shot generation given a reference image and text prompt.</div>
+    <div class="caption">Overview of CustomDiT. Training pipeline (above) shows how reference image latents are injected via concatenation with shifted positional embeddings. Inference (below) demonstrates zero-shot generation given a reference image and text prompt.</div>
   </div>
 </section>
 
-<!-- Qualitative Comparison -->
+<hr class="section-divider">
+
+<!-- ═══ Qualitative Comparison ═══ -->
 <section id="comparison">
-  <h2>Qualitative Comparison</h2>
-  <p>Side-by-side comparison with baseline methods. CustomDiT (rightmost, blue border) best preserves subject identity while generating natural, dynamic videos.</p>
+  <h2><span class="section-icon">&#9670;</span>Qualitative Comparison</h2>
+  <p>Side-by-side comparison with baseline methods. CustomDiT (rightmost, highlighted) best preserves subject identity while generating natural, dynamic videos.</p>
 
-  <div class="comparison-header">
-    <span>Reference</span>
-    <span>VideoBooth</span>
-    <span>BLIP-Diff.</span>
-    <span>IP-Adapter</span>
-    <span>MS-Diff.</span>
-    <span>OminiCtrl</span>
-    <span style="color: #3498db;">Ours</span>
-  </div>
+  <div class="carousel-container">
+    <button class="carousel-arrow carousel-prev" onclick="compCarousel.prev()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+    <div class="carousel-inner">
 
-  <!-- Cat -->
-  <div class="comparison-row">
-    <div class="ref-col"><img src="static/images/ref_cat.jpg" alt="ref"></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/videobooth_cat.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_cat.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_cat.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_cat.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_cat.mp4" type="video/mp4"></video></div>
-    <div class="method-col ours"><video autoplay loop muted playsinline><source src="static/videos/customdit_cat.mp4" type="video/mp4"></video></div>
-  </div>
+      <!-- Slide 1: Lamp -->
+      <div class="carousel-slide active">
+        <div class="comp-prompt">Prompt: "A lamp in a log cabin, a cozy fireplace crackling nearby."</div>
+        <div class="comparison-grid">
+          <div class="comp-cell"><div class="comp-label">Reference</div><img src="static/images/decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.jpg" alt="ref"></div>
+          <div class="comp-cell"><div class="comp-label">VideoBooth</div><video autoplay loop muted playsinline><source src="static/videos/videobooth_decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">BLIP-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">IP-Adapter</div><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">MS-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">OminiCtrl</div><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell ours-cell"><div class="comp-label ours-label">Ours</div><video autoplay loop muted playsinline><source src="static/videos/decoritems_lamp1_clay-banks-uaKbXAjtJAE-unsplash.mp4" type="video/mp4"></video></div>
+        </div>
+      </div>
 
-  <!-- Dog -->
-  <div class="comparison-row">
-    <div class="ref-col"><img src="static/images/ref_dog.jpg" alt="ref"></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/videobooth_dog.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_dog.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_dog.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_dog.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_dog.mp4" type="video/mp4"></video></div>
-    <div class="method-col ours"><video autoplay loop muted playsinline><source src="static/videos/customdit_dog.mp4" type="video/mp4"></video></div>
-  </div>
+      <!-- Slide 2: Dog -->
+      <div class="carousel-slide">
+        <div class="comp-prompt">Prompt: "a dog on top of a purple rug in a forest"</div>
+        <div class="comparison-grid">
+          <div class="comp-cell"><div class="comp-label">Reference</div><img src="static/images/dog6_01.jpg" alt="ref"></div>
+          <div class="comp-cell"><div class="comp-label">VideoBooth</div><video autoplay loop muted playsinline><source src="static/videos/videobooth_dog6_01.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">BLIP-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_dog6_01.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">IP-Adapter</div><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_dog6_01.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">MS-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_dog6_01.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">OminiCtrl</div><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_dog6_01.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell ours-cell"><div class="comp-label ours-label">Ours</div><video autoplay loop muted playsinline><source src="static/videos/dog6_01.mp4" type="video/mp4"></video></div>
+        </div>
+      </div>
 
-  <!-- Samoyed -->
-  <div class="comparison-row">
-    <div class="ref-col"><img src="static/images/ref_samoyed.jpg" alt="ref"></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/videobooth_samoyed.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_samoyed.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_samoyed.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_samoyed.mp4" type="video/mp4"></video></div>
-    <div class="method-col"><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_samoyed.mp4" type="video/mp4"></video></div>
-    <div class="method-col ours"><video autoplay loop muted playsinline><source src="static/videos/customdit_samoyed.mp4" type="video/mp4"></video></div>
+      <!-- Slide 3: Golden Retriever -->
+      <div class="carousel-slide">
+        <div class="comp-prompt">Prompt: "Golden retriever walks on sandy beach with waves and seagulls."</div>
+        <div class="comparison-grid">
+          <div class="comp-cell"><div class="comp-label">Reference</div><img src="static/images/n02099601_6772.JPEG" alt="ref"></div>
+          <div class="comp-cell"><div class="comp-label">VideoBooth</div><video autoplay loop muted playsinline><source src="static/videos/videobooth_n02099601_6772.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">BLIP-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_n02099601_6772.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">IP-Adapter</div><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_n02099601_6772.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">MS-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_n02099601_6772.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">OminiCtrl</div><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_n02099601_6772.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell ours-cell"><div class="comp-label ours-label">Ours</div><video autoplay loop muted playsinline><source src="static/videos/n02099601_6772.mp4" type="video/mp4"></video></div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Plushie -->
+      <div class="carousel-slide">
+        <div class="comp-prompt">Prompt: "Pokemon plushie made of crochet."</div>
+        <div class="comparison-grid">
+          <div class="comp-cell"><div class="comp-label">Reference</div><img src="static/images/plushie_2_3.jpg" alt="ref"></div>
+          <div class="comp-cell"><div class="comp-label">VideoBooth</div><video autoplay loop muted playsinline><source src="static/videos/videobooth_plushie_2_3.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">BLIP-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/blip-diffusion_plushie_2_3.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">IP-Adapter</div><video autoplay loop muted playsinline><source src="static/videos/ip-adapter_plushie_2_3.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">MS-Diff.</div><video autoplay loop muted playsinline><source src="static/videos/msdiffusion_plushie_2_3.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell"><div class="comp-label">OminiCtrl</div><video autoplay loop muted playsinline><source src="static/videos/ominicontrol_plushie_2_3.mp4" type="video/mp4"></video></div>
+          <div class="comp-cell ours-cell"><div class="comp-label ours-label">Ours</div><video autoplay loop muted playsinline><source src="static/videos/plushie_2_3.mp4" type="video/mp4"></video></div>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-arrow carousel-next" onclick="compCarousel.next()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    <div class="carousel-dots">
+      <span class="carousel-dot active" onclick="compCarousel.goTo(0)"></span>
+      <span class="carousel-dot" onclick="compCarousel.goTo(1)"></span>
+      <span class="carousel-dot" onclick="compCarousel.goTo(2)"></span>
+      <span class="carousel-dot" onclick="compCarousel.goTo(3)"></span>
+    </div>
   </div>
 </section>
 
-<!-- Benchmark -->
+<hr class="section-divider">
+
+<!-- ═══ Benchmark ═══ -->
 <section id="benchmark">
-  <h2>Benchmark Results</h2>
+  <h2><span class="section-icon">&#9670;</span>Benchmark Results</h2>
   <p>Quantitative comparison on DreamBooth-Custom and OpenCustom benchmarks. CustomDiT achieves the best identity preservation (CLIP-I, DINO-I) and dynamic degree while maintaining competitive text alignment.</p>
-  <table class="benchmark-table">
-    <thead>
-      <tr>
-        <th>Method</th>
-        <th>Benchmark</th>
-        <th>M.S.&uarr;</th>
-        <th>D.D.&uarr;</th>
-        <th>CLIP-T&uarr;</th>
-        <th>CLIP-I&uarr;</th>
-        <th>DINO-I&uarr;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td rowspan="2">OminiControl</td>
-        <td>DreamBooth</td>
-        <td>98.91</td><td>24.00</td><td class="second">30.45</td><td>68.64</td><td>43.69</td>
-      </tr>
-      <tr>
-        <td>OpenCustom</td>
-        <td>98.69</td><td>38.64</td><td>31.34</td><td>64.57</td><td>34.69</td>
-      </tr>
-      <tr>
-        <td rowspan="2">MS-Diffusion</td>
-        <td>DreamBooth</td>
-        <td class="second">99.25</td><td>9.00</td><td>30.08</td><td>76.21</td><td class="second">62.67</td>
-      </tr>
-      <tr>
-        <td>OpenCustom</td>
-        <td class="second">98.90</td><td>20.36</td><td class="best">31.51</td><td>75.23</td><td class="second">59.44</td>
-      </tr>
-      <tr>
-        <td rowspan="2">BLIP-Diffusion</td>
-        <td>DreamBooth</td>
-        <td>98.93</td><td>4.00</td><td>27.64</td><td>76.36</td><td>54.21</td>
-      </tr>
-      <tr>
-        <td>OpenCustom</td>
-        <td>98.51</td><td>20.93</td><td>28.79</td><td class="best">76.05</td><td>54.60</td>
-      </tr>
-      <tr>
-        <td rowspan="2">IP-Adapter</td>
-        <td>DreamBooth</td>
-        <td>98.93</td><td>7.00</td><td>28.96</td><td class="second">76.52</td><td>54.57</td>
-      </tr>
-      <tr>
-        <td>OpenCustom</td>
-        <td>98.62</td><td>29.50</td><td>30.86</td><td>74.21</td><td>49.00</td>
-      </tr>
-      <tr>
-        <td rowspan="2">VideoBooth</td>
-        <td>DreamBooth</td>
-        <td>96.97</td><td class="second">50.00</td><td>27.25</td><td>61.63</td><td>31.38</td>
-      </tr>
-      <tr>
-        <td>OpenCustom</td>
-        <td>96.61</td><td class="second">57.86</td><td>28.20</td><td>67.69</td><td>41.48</td>
-      </tr>
-      <tr class="ours">
-        <td rowspan="2"><strong>CustomDiT (Ours)</strong></td>
-        <td>DreamBooth</td>
-        <td>97.66</td><td class="best">61.00</td><td>29.17</td><td class="best">76.93</td><td class="best">66.59</td>
-      </tr>
-      <tr class="ours">
-        <td>OpenCustom</td>
-        <td>97.42</td><td class="best">70.29</td><td>30.96</td><td class="second">75.32</td><td class="best">65.80</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <div class="table-wrapper">
+    <table class="benchmark-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Benchmark</th>
+          <th>M.S. &uarr;</th>
+          <th>D.D. &uarr;</th>
+          <th>CLIP-T &uarr;</th>
+          <th>CLIP-I &uarr;</th>
+          <th>DINO-I &uarr;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td rowspan="2">OminiControl</td><td>DreamBooth</td><td>98.91</td><td>24.00</td><td class="second">30.45</td><td>68.64</td><td>43.69</td></tr>
+        <tr><td>OpenCustom</td><td>98.69</td><td>38.64</td><td>31.34</td><td>64.57</td><td>34.69</td></tr>
 
-<!-- Qualitative figure from paper -->
-<section id="qualitative">
-  <h2>Qualitative Comparison (Paper)</h2>
-  <div class="figure">
-    <img src="static/images/qualitative.png" alt="Qualitative comparison">
-    <div class="caption">Figure 3: Qualitative comparison with previous methods. VideoBooth is a PT2V method while the other three methods are implemented in a naive PT2I + I2V pipeline.</div>
+        <tr><td rowspan="2">MS-Diffusion</td><td>DreamBooth</td><td class="second">99.25</td><td>9.00</td><td>30.08</td><td>76.21</td><td class="second">62.67</td></tr>
+        <tr><td>OpenCustom</td><td class="second">98.90</td><td>20.36</td><td class="best">31.51</td><td>75.23</td><td class="second">59.44</td></tr>
+
+        <tr><td rowspan="2">BLIP-Diffusion</td><td>DreamBooth</td><td>98.93</td><td>4.00</td><td>27.64</td><td>76.36</td><td>54.21</td></tr>
+        <tr><td>OpenCustom</td><td>98.51</td><td>20.93</td><td>28.79</td><td class="best">76.05</td><td>54.60</td></tr>
+
+        <tr><td rowspan="2">IP-Adapter</td><td>DreamBooth</td><td>98.93</td><td>7.00</td><td>28.96</td><td class="second">76.52</td><td>54.57</td></tr>
+        <tr><td>OpenCustom</td><td>98.62</td><td>29.50</td><td>30.86</td><td>74.21</td><td>49.00</td></tr>
+
+        <tr><td rowspan="2">VideoBooth</td><td>DreamBooth</td><td>96.97</td><td class="second">50.00</td><td>27.25</td><td>61.63</td><td>31.38</td></tr>
+        <tr><td>OpenCustom</td><td>96.61</td><td class="second">57.86</td><td>28.20</td><td>67.69</td><td>41.48</td></tr>
+
+        <tr><td rowspan="2">ID-Animator</td><td>DreamBooth</td><td class="best">99.30</td><td>5.00</td><td class="best">30.94</td><td>67.29</td><td>34.62</td></tr>
+        <tr><td>OpenCustom</td><td class="best">99.14</td><td>8.79</td><td class="second">31.50</td><td>66.81</td><td>34.38</td></tr>
+
+        <tr class="ours"><td rowspan="2"><strong>CustomDiT (Ours)</strong></td><td>DreamBooth</td><td>97.66</td><td class="best">61.00</td><td>29.17</td><td class="best">76.93</td><td class="best">66.59</td></tr>
+        <tr class="ours"><td>OpenCustom</td><td>97.42</td><td class="best">70.29</td><td>30.96</td><td class="second">75.32</td><td class="best">65.80</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- Citation -->
+<hr class="section-divider">
+
+<!-- ═══ Citation ═══ -->
 <section id="citation">
-  <h2>BibTeX</h2>
-  <div class="bibtex">@inproceedings{zhang2026comprehensive,
+  <h2><span class="section-icon">&#9670;</span>BibTeX</h2>
+  <div class="bibtex-wrapper">
+    <div class="bibtex">@inproceedings{zhang2026comprehensive,
   title={A Comprehensive Ecosystem for Open-Domain Customized Video Generation},
   author={Zhang, Jingxu and Hong, Yuqian and Kim, Daneul and Qiu, Kai and Dai, Qi and Bao, Jianmin and Yang, Yifan and Sun, Xiaoyan and Luo, Chong},
-  booktitle={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  year={2026}
+  booktitle={ICASSP 2026-2026 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={9167--9171},
+  year={2026},
+  organization={IEEE}
 }</div>
+  </div>
 </section>
 
 </div>
@@ -299,6 +327,65 @@
     PexelsCustom-1M &copy; 2026 &middot; USTC &amp; Microsoft Research Asia &amp; Seoul National University
   </div>
 </footer>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <div id="lightbox-content"></div>
+</div>
+
+<script>
+class Carousel {
+  constructor(container, autoInterval = 8000) {
+    this.slides = container.querySelectorAll('.carousel-slide');
+    this.dots = container.querySelectorAll('.carousel-dot');
+    this.current = 0;
+    this.total = this.slides.length;
+    this.autoInterval = autoInterval;
+    this.timer = null;
+    this.startAuto();
+  }
+  goTo(i) {
+    this.slides[this.current].classList.remove('active');
+    this.dots[this.current].classList.remove('active');
+    this.slides[this.current].querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+    this.current = (i + this.total) % this.total;
+    this.slides[this.current].classList.add('active');
+    this.dots[this.current].classList.add('active');
+    this.slides[this.current].querySelectorAll('video').forEach(v => v.play());
+    this.resetAuto();
+  }
+  next() { this.goTo(this.current + 1); }
+  prev() { this.goTo(this.current - 1); }
+  startAuto() { this.timer = setInterval(() => this.next(), this.autoInterval); }
+  resetAuto() { clearInterval(this.timer); this.startAuto(); }
+}
+const compCarousel = new Carousel(document.querySelector('.carousel-container'));
+
+// Lightbox
+function openLightbox(el) {
+  const box = document.getElementById('lightbox');
+  const content = document.getElementById('lightbox-content');
+  if (el.tagName === 'VIDEO') {
+    const src = el.querySelector('source')?.src || el.src;
+    content.innerHTML = '<video autoplay loop muted playsinline style="max-width:85%;max-height:85%"><source src="' + src + '" type="video/mp4"></video>';
+  } else if (el.tagName === 'IMG') {
+    content.innerHTML = '<img src="' + el.src + '">';
+  }
+  box.classList.add('active');
+}
+function closeLightbox() {
+  const box = document.getElementById('lightbox');
+  box.classList.remove('active');
+  document.getElementById('lightbox-content').innerHTML = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Attach click handlers to all comparison/demo videos and images
+document.querySelectorAll('.comp-cell video, .comp-cell img, .demo-card video').forEach(el => {
+  el.addEventListener('click', e => { e.stopPropagation(); openLightbox(el); });
+});
+</script>
 
 </body>
 </html>

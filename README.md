@@ -1,6 +1,27 @@
-# PexelsCustom-1M: A Comprehensive Ecosystem for Open-Domain Customized Video Generation
+<div align="center">
 
-[Paper]() | [Project Page]() | [Dataset]() | [Model Weights]()
+# PexelsCustom-1M
+
+### A Comprehensive Ecosystem for Open-Domain Customized Video Generation
+
+**ICASSP 2026**
+
+[Jingxu Zhang]()\*<sup>1,2</sup>, [Yuqian Hong]()\*<sup>1</sup>, [Daneul Kim]()<sup>3</sup>, [Kai Qiu]()<sup>2</sup>, [Qi Dai]()<sup>2</sup>, [Jianmin Bao]()<sup>2</sup>, [Yifan Yang]()<sup>2</sup>, [Xiaoyan Sun]()<sup>1</sup>, [Chong Luo]()<sup>2</sup>
+
+<sup>1</sup>University of Science and Technology of China &nbsp; <sup>2</sup>Microsoft Research Asia &nbsp; <sup>3</sup>Seoul National University
+
+<sup>*</sup>Equal contribution
+
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/xxxx.xxxxx)
+[![Project Page](https://img.shields.io/badge/🌐-Project%20Page-blue)](https://xxx.github.io/PexelsCustom-1M)
+[![HuggingFace Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/xxx/PexelsCustom-1M)
+[![HuggingFace Model](https://img.shields.io/badge/🤗-Model%20Weights-orange)](https://huggingface.co/xxx/CustomDiT)
+
+</div>
+
+<div align="center">
+  <img src="docs/static/images/teaser.png" width="85%" />
+</div>
 
 ## Overview
 
@@ -86,7 +107,7 @@ The data curation pipeline transforms raw Pexels videos into training-ready *(id
 
 1. **Preprocessing**: Keyframe extraction, Florence-2 captioning, GPT-4o noun extraction, GroundingDINO detection, and SAM2 segmentation.
 2. **Filtering**: Multi-stage quality filtering (aesthetic, bounding box size, overlap, SAM score).
-3. **Re-captioning**: GPT-4o subject-centric caption generation with special token insertion.
+3. **Re-captioning**: GPT-4o subject-centric caption generation focused on each detected object.
 4. **Post-processing**: Result aggregation, CSV merging, and train/val splitting.
 
 For full details, see [data_curation/README.md](data_curation/README.md).

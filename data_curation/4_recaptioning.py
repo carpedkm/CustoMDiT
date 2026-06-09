@@ -4,7 +4,6 @@ This script generates object-centric captions for each detected subject by:
 1. Re-selecting class names to match original/Florence captions
 2. Sending full image + cropped object image to GPT-4o for focused captioning
 3. Batch-processing unique objects and individual processing for duplicates
-4. Adding a special token 'loicea' before the subject word in each caption
 
 Usage:
     python 4_recaptioning.py --p_meta metadata.csv --dataroot /path/to/filtered_output \
@@ -180,8 +179,6 @@ def process_batch_class(class_name, image_path, original_caption, model_name="gp
             The caption MUST include the given object words without modifying.\n\
             Try to describe interactions between different objects in the scene.\n\
             In each line reply the caption only, without any further context or description.\n\
-            Remember to add the word 'loicea' only before the given object words correctly.\n\
-            'loicea' should appear in the caption once and only once in each caption.\n\
             For reference only, the original caption is {original_caption}, you might merge it to your caption, but you don't have to.\n\
             The given objects are \"{class_name}\""
     content = "\n".join(line.strip() for line in content.splitlines() if line.strip())
@@ -268,8 +265,6 @@ def process_single_text(class_name, image_path, original_caption, bbox, model_na
             Try to describe interactions between different objects in the scene.\n\
             Reply the caption only, without any further context or description.\n\
             There might be several objects that match the given object name, so you can refer to the second image to choose the correct object.\n\
-            Remember to add the word 'loicea' only before the given object words in the second image.\n\
-            'loicea' should appear in the caption once and only once.\n\
             For reference only, the original caption is {original_caption}.\n\
             The given object is \"{class_name}\""
     content = "\n".join(line.strip() for line in content.splitlines() if line.strip())
