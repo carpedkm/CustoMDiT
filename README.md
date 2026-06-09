@@ -13,9 +13,8 @@
 <sup>*</sup>Equal contribution
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/xxxx.xxxxx)
-[![Project Page](https://img.shields.io/badge/🌐-Project%20Page-blue)](https://xxx.github.io/PexelsCustom-1M)
-[![HuggingFace Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/xxx/PexelsCustom-1M)
-[![HuggingFace Model](https://img.shields.io/badge/🤗-Model%20Weights-orange)](https://huggingface.co/xxx/CustomDiT)
+[![Project Page](https://img.shields.io/badge/🌐-Project%20Page-blue)](https://carpedkm.github.io/CustoMDiT)
+[![HuggingFace Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/carpedkm/CustoMDiT)
 
 </div>
 
@@ -68,21 +67,6 @@ pip install git+https://github.com/Vchitect/VBench.git
 
 Also install SAM2 and GroundingDINO as described above.
 
-## Quick Start -- Inference
-
-1. Download the LoRA weights and place them locally (e.g., `./weights/pytorch_lora_weights.safetensors`).
-
-2. Prepare a CSV file with columns `prompt` and `image_path`, where each row specifies a text prompt and the path to a reference image of the target identity.
-
-3. Run inference:
-
-```bash
-cd customdit
-bash inference.sh /path/to/pytorch_lora_weights.safetensors /path/to/samples.csv ./output
-```
-
-Generated videos will be saved to the specified output directory.
-
 ## Quick Start -- Training
 
 CustomDiT training follows a two-stage procedure based on CogVideoX-5b:
@@ -100,6 +84,21 @@ accelerate launch --config_file configs/accelerate_single_node.yaml train.py --c
 # Update resume_path in configs/train_stage2_da.yaml to point to the Stage 1 checkpoint
 accelerate launch --config_file configs/accelerate_single_node.yaml train.py --config configs/train_stage2_da.yaml
 ```
+
+## Quick Start -- Inference
+
+1. After training, locate your LoRA weights (e.g., `output/stage2/checkpoint-XXXX/pytorch_lora_weights.safetensors`).
+
+2. Prepare a CSV file with columns `prompt` and `image_path`, where each row specifies a text prompt and the path to a reference image of the target identity.
+
+3. Run inference:
+
+```bash
+cd customdit
+bash inference.sh /path/to/pytorch_lora_weights.safetensors /path/to/samples.csv ./output
+```
+
+Generated videos will be saved to the specified output directory.
 
 ## Data Curation Pipeline
 

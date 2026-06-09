@@ -15,7 +15,7 @@ data_config:
   metadata_path: ./data/metadata/train.csv
   cond_image_dir: ./data/reference_images
   cond_json_dir: ./data/annotations
-  split: pexels400k-train
+  split: pexels-train
   num_frames: 49
   fps: 8
   data_augmentation: false
