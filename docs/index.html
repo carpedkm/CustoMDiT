@@ -382,7 +382,7 @@ function closeLightbox() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 // Attach click handlers to all comparison/demo videos and images
-document.querySelectorAll('.comp-cell video, .comp-cell img, .demo-card video').forEach(el => {
+document.querySelectorAll('.comp-cell video, .comp-cell img, .demo-card video, .demo-card img').forEach(el => {
   el.addEventListener('click', e => { e.stopPropagation(); openLightbox(el); });
 });
 </script>
