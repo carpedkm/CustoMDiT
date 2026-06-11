@@ -10,7 +10,7 @@
 
 <sup>1</sup>University of Science and Technology of China &nbsp; <sup>2</sup>Microsoft Research Asia &nbsp; <sup>3</sup>Seoul National University
 
-[![arXiv](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/xxxx.xxxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/2606.11783)
 [![Project Page](https://img.shields.io/badge/🌐-Project%20Page-blue)](https://carpedkm.github.io/CustoMDiT)
 [![HuggingFace Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/carpedkm/CustoMDiT)
 
