@@ -125,12 +125,12 @@ For full details, see [evaluation/README.md](evaluation/README.md).
 
 ## Dataset
 
-The PexelsCustom-1M dataset will be available on HuggingFace: [Coming Soon]()
+The PexelsCustom-1M dataset is available on HuggingFace: [carpedkm/CustoMDiT](https://huggingface.co/datasets/carpedkm/CustoMDiT)
 
 The release includes:
 - **Metadata CSV**: Video IDs, subject categories, captions, and annotation references.
-- **Reference images**: Cropped subject reference images.
-- **Annotations**: Bounding boxes and segmentation masks (packaged as tar shards).
+- **Annotations**: Bounding boxes and segmentation masks (packaged as tar archive).
+- **Frame extraction script**: Extract reference keyframes from videos using annotation metadata.
 
 **Videos** are hosted on [Pexels](https://www.pexels.com) and can be downloaded using the video ID:
 ```
